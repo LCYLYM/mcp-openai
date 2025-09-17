@@ -1,17 +1,20 @@
 # MCP OpenAI Server
 
-A Model Context Protocol (MCP) server that lets you seamlessly use OpenAI's models right from Claude.
+A comprehensive Model Context Protocol (MCP) server that provides full OpenAI API integration including streaming, function calling, and advanced parameters support.
 
 ## Features
 
-- Direct integration with OpenAI's chat models
-- Support for multiple models including:
-  - gpt-4o
-  - gpt-4o-mini
-  - o1-preview
-  - o1-mini
-- Simple message passing interface
-- Basic error handling
+- **Complete OpenAI API support** with all conversation and function calling capabilities
+- **Streaming responses** for real-time interaction
+- **Function/Tool calling** with comprehensive tool management
+- **Concurrent request processing** for improved performance
+- **Custom base URL support** for mirror services and alternative endpoints
+- **Comprehensive parameter support** including temperature, max_tokens, top_p, penalties, etc.
+- **Multiple model support** including:
+  - gpt-4o, gpt-4o-mini
+  - gpt-4-turbo, gpt-4, gpt-3.5-turbo
+  - o1-preview, o1-mini
+  - All recent OpenAI model variants
 
 ## Prerequisites
 
@@ -43,34 +46,64 @@ This config lets Claude Desktop fire up the OpenAI MCP server whenever you need 
 
 ## Usage
 
-Just start chatting with Claude and when you want to use OpenAI's models, ask Claude to use them. 
+The enhanced MCP OpenAI server provides comprehensive OpenAI API access with advanced features:
 
-For example, you can say,
+### Basic Usage
 
 ```plaintext
 Can you ask o1 what it thinks about this problem?
 ```
 
-or,
-
 ```plaintext
-What does gpt-4o think about this?
+Use gpt-4o with streaming enabled to analyze this data
 ```
 
-The server currently supports these models:
+### Advanced Features
 
-- gpt-4o (default)
-- gpt-4o-mini
-- o1-preview
-- o1-mini
+**Streaming Responses:**
+```plaintext
+Use streaming mode with gpt-4o to process this large text
+```
 
-### Tools
+**Function Calling:**
+```plaintext
+Call the weather function using gpt-4o with these tools: [weather tool definition]
+```
 
-1. `openai_chat`
-   - Sends messages to OpenAI's chat completion API
-   - Arguments: 
-     - `messages`: Array of messages (required)
-     - `model`: Which model to use (optional, defaults to gpt-4o)
+**Custom Parameters:**
+```plaintext
+Use gpt-4o with temperature 0.7, max_tokens 1000, and top_p 0.9
+```
+
+**Concurrent Processing:**
+```plaintext
+Process these 5 requests concurrently using the batch tool
+```
+
+### Available Tools
+
+1. **`openai_chat`** - Advanced chat completion with full OpenAI API support
+   - **Messages**: Full OpenAI message format including tool calls
+   - **Models**: All supported OpenAI models
+   - **Parameters**: temperature, max_tokens, top_p, frequency_penalty, presence_penalty, stop, stream, tools, tool_choice, response_format, seed, user
+   - **Features**: Streaming, function calling, JSON mode
+
+2. **`openai_batch_chat`** - Concurrent request processing
+   - **Requests**: Array of chat requests to process simultaneously
+   - **Concurrency**: Configurable concurrent request limit (1-10)
+   - **Performance**: Significant speedup for multiple requests
+
+### Supported Models
+
+- **GPT-4 Family**: gpt-4o, gpt-4o-mini, gpt-4-turbo, gpt-4, gpt-4-turbo-preview, gpt-4-0125-preview, gpt-4-1106-preview
+- **GPT-3.5**: gpt-3.5-turbo, gpt-3.5-turbo-0125  
+- **O1 Family**: o1-preview, o1-mini
+
+### Environment Variables
+
+- `OPENAI_API_KEY`: Your OpenAI API key (required)
+- `OPENAI_BASE_URL`: Custom base URL for mirror services (optional)
+- `OPENAI_TIMEOUT`: Request timeout in milliseconds (optional, default: 60000)
 
 ## Problems
 
