@@ -1,25 +1,25 @@
 {
   "name": "@mzxrai/mcp-openai",
-  "version": "0.1.1",
-  "description": "MCP server for simple interaction with OpenAI API",
+  "version": "0.2.0",
+  "description": "Comprehensive MCP server for complete OpenAI API integration with streaming, function calling, embeddings, and more",
   "license": "MIT",
   "author": "mzxrai",
-  "homepage": "https://github.com/mzxrai/mcp-openai",
+  "homepage": "https://github.com/LCYLYM/mcp-openai",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mzxrai/mcp-openai.git"
+    "url": "https://github.com/LCYLYM/mcp-openai.git"
   },
-  "bugs": "https://github.com/mzxrai/mcp-openai/issues",
+  "bugs": "https://github.com/LCYLYM/mcp-openai/issues",
   "type": "module",
   "bin": {
-    "mcp-server-webresearch": "dist/index.js"
+    "mcp-server-openai": "dist/index.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc && shx chmod +x dist/*.js",
-    "prepare": "pnpm run build",
+    "prepare": "npm run build",
     "watch": "tsc --watch",
     "dev": "tsx watch index.ts"
   },
@@ -30,8 +30,15 @@
     "mcp",
     "model-context-protocol",
     "openai",
+    "gpt-4o",
     "o1",
-    "ai"
+    "ai",
+    "chat-completions",
+    "streaming",
+    "function-calling",
+    "embeddings",
+    "moderation",
+    "llm"
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.0.1",

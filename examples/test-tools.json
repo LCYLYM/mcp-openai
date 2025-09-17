@@ -1,0 +1,90 @@
+{
+  "chat_example": {
+    "method": "tools/call",
+    "params": {
+      "name": "openai_chat",
+      "arguments": {
+        "messages": [
+          {"role": "system", "content": "You are a helpful assistant."},
+          {"role": "user", "content": "Explain quantum computing in simple terms."}
+        ],
+        "model": "gpt-4o-mini",
+        "temperature": 0.7,
+        "max_tokens": 150
+      }
+    }
+  },
+  
+  "function_calling_example": {
+    "method": "tools/call", 
+    "params": {
+      "name": "openai_chat",
+      "arguments": {
+        "messages": [
+          {"role": "user", "content": "What's the weather like in Tokyo?"}
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "description": "Get current weather for a location",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "location": {"type": "string", "description": "City name"}
+                },
+                "required": ["location"]
+              }
+            }
+          }
+        ],
+        "tool_choice": "auto"
+      }
+    }
+  },
+
+  "streaming_example": {
+    "method": "tools/call",
+    "params": {
+      "name": "openai_chat", 
+      "arguments": {
+        "messages": [
+          {"role": "user", "content": "Write a short creative story about a robot."}
+        ],
+        "stream": true,
+        "model": "gpt-4o",
+        "temperature": 0.9
+      }
+    }
+  },
+
+  "embeddings_example": {
+    "method": "tools/call",
+    "params": {
+      "name": "openai_embeddings",
+      "arguments": {
+        "input": "This is a sample text to create embeddings for.",
+        "model": "text-embedding-3-small"
+      }
+    }
+  },
+
+  "moderation_example": {
+    "method": "tools/call",
+    "params": {
+      "name": "openai_moderations", 
+      "arguments": {
+        "input": "This is a test message for content moderation."
+      }
+    }
+  },
+
+  "models_list_example": {
+    "method": "tools/call",
+    "params": {
+      "name": "openai_models",
+      "arguments": {}
+    }
+  }
+}
